@@ -1,0 +1,24 @@
+platform :ios do
+  desc "Deploy ios app on the appstore"
+
+  lane :deploy do
+    match(type: "appstore")
+    nativescript(platform: 'ios')
+    deliver(ipa: ENV('TNS_IOS_RELEASE_BUILD_PATH'))
+  end
+end
+
+platform :android do
+  desc "Deploy android app on play store"
+
+  lane :deploy do
+    nativescipt(
+      platform: 'android',
+      keystore_path: './prod.keystore',
+      keystore_alias: 'prod',
+      keystore_password: 'password'
+      build_flag: ['-UseModernBuildSystem=0']
+    )
+    supply(apk: ENV('TNS_ANDROID_RELEASE_BUILD_PATH'))
+  end
+end
