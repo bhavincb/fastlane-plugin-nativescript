@@ -1,3 +1,6 @@
+require 'fastlane/action'
+require_relative '../helper/nativescript_helper'
+
 module Fastlane
   module Actions
     module SharedValues
