@@ -120,6 +120,12 @@ module Fastlane
           )
         end
 
+        if params[:platform].to_s == 'ios'
+          sh "tns build #{params[:platform]} --no-interactive #{args.join(' ')} -- #{ios_args}" 
+        elsif params[:platform].to_s == 'android'
+          sh "tns build #{params[:platform]} --no-interactive #{args.join(' ')} -- -- #{android_args}" 
+        end
+
       end
 
       # export build paths (run step #3)
